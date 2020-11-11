@@ -1,10 +1,45 @@
-<mvc:View controllerName="ns.Project1.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+<mvc:View xmlns:control="sap.gantt.control" controllerName="ns.Project1.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
  xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
 					<content>
+                    <HBox>
+<HBox>
+<VBox id="Logo" visible="true">
+<FlexBox class="sapUiLargeMarginEnd" justifyContent="End" alignItems="End">
+<items>
+<Image class="sapUiLargeMarginBegin sapUiTinyMarginTop sapUiMediumMarginBotton sapUiTinyMarginEnd" width="8em" id="logo" densityAware="false" src="https://www.adityabirla.com/assets/images/logo.jpg"/>
+</items>
+</FlexBox>
+</VBox>
+</HBox>
+<HBox>
+<VBox class="HeaderTile1 sapUiTinyMarginTop sapUiTinyMarginBeginEnd" id="syscontainer">
+<Title class="Hbold HeaderTileText1 sapUiMediumMarginBeginEnd sapUiTinyMarginTop" text="Systems - Under Maintenance"/>
+<Text class="HeaderTileStatusText1 sapUiTinyMarginBegin" id="sysMaintenance" text="CRM,ECC"/>
+</VBox>
+</HBox>
+<HBox>
+<VBox class="HeaderTile1 sapUiTinyMarginTop sapUiTinyMarginEnd" id="criticalcontainer">
+<Title class="Hbold HeaderTileText1 sapUiMediumMarginBeginEnd sapUiTinyMarginTop" text="Critical Systems"/>
+<Text class="HeaderTileStatusText1 sapUiTinyMarginBegin" id="criticalsys" text="BIW,PLM"/>
+</VBox>
+</HBox>
+<FlexBox class="sapUiLargeMarginBegin" justifyContent="Start" alignItems="Start">
+<items>
+<!-- displayFormat="short" -->
+<DatePicker class="sapUiSmallMarginTop" id="CurrentDate" change="handleDateChange" displayFormat="long" valueFormat="yyyyMMdd" value="99991231"/>
+<!-- <ObjectStatus id="CurrentDate" class="sapUiSmallMarginTop"text="" state="None" /> -->
+</items>
+</FlexBox>
+</HBox>
+<IconTabBar id="idIconTabBar" backgroundDesign="Transparent" expand="{device>isNoPhone}" applyContentPadding="false" upperCase="false">
+<items>
+<!-- Icon tab systems -->
+<IconTabFilter class="IconTabText" text="Systems" iconColor="Critical" icon="sap-icon://it-system">
+
                     <Text text="Dashboard"/>
                     <VBox id="tilecontainer">
                     <HBox>
@@ -29,7 +64,8 @@
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="6th Nov 2020"/>
+                    <Text text="{ path: 'oCRMModel>/d/results/0/LastModified',
+                    formatter: '.Formatter.formatJSONDate'}"/>
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -40,19 +76,30 @@
                     <HBox>
                     <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
                     <NumericContent id="eccqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
-                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    value="{oECCModel>/d/results/1/StockQuantity}"
+                     valueColor="Critical"  
+                     indicator="None" 
+                     press="onOpenQueueDialog"/>
                     
                     </HBox>
                     <List id="ecclist" class="sapUiTinyMarginBottom">
                     <StandardListItem id="eccsys" title="System Errors" type="Active"
-                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    press="onOpenSystemDialog" 
+                    info="{oECCModel>/d/results/1/DimensionHeight}"
+                     infoState="Error"/>
                     <StandardListItem id="eccapp" title="App Errors" type="Active" 
-                    press="onOpenAppDialog" info="259" infoState="Error"/> 
-                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    press="onOpenAppDialog" 
+                    info="{oECCModel>/d/results/1/DimensionWidth}" 
+                    infoState="Error"/> 
+                    <StandardListItem title="No of threads" 
+                    info="{oECCModel>/d/results/1/DimensionDepth}" 
+                    infoState="None"/>
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="6th Nov 2020"/>
+                    <Text text="{
+						 path: 'oECCModel>/d/results/1/LastModified',
+						formatter: '.Formatter.formatJSONDate'}"/>
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -62,19 +109,30 @@
                     <HBox>
                     <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
                     <NumericContent id="biwqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
-                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    value="{oBIWModel>/d/results/2/StockQuantity}" 
+                    valueColor="Critical"  
+                    indicator="None" 
+                    press="onOpenQueueDialog"/>
                     
                     </HBox>
                     <List id="biwlist" class="sapUiTinyMarginBottom">
                     <StandardListItem id="biwsys" title="System Errors" type="Active"
-                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    press="onOpenSystemDialog"
+                     info="{oBIWModel>/d/results/2/DimensionHeight}" 
+                     infoState="Error"/>
                     <StandardListItem id="biwapp" title="App Errors" type="Active" 
-                    press="onOpenAppDialog" info="259" infoState="Error"/> 
-                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    press="onOpenAppDialog"
+                     info="{oBIWModel>/d/results/2/DimensionWidth}" 
+                     infoState="Error"/> 
+                    <StandardListItem title="No of threads" 
+                    info="{oBIWModel>/d/results/2/DimensionDepth}"
+                     infoState="None"/>
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="6th Nov 2020"/>
+                    <Text text="{
+								path: 'oBIWModel>/d/results/2/LastModified',
+							    formatter: '.Formatter.formatJSONDate'}"/>
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -94,19 +152,29 @@
                     <HBox>
                     <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
                     <NumericContent id="plmqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
-                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    value="{oPLMModel>/d/results/3/StockQuantity}"
+                     valueColor="Critical"  
+                     indicator="None" 
+                     press="onOpenQueueDialog"/>
                     
                     </HBox>
                     <List id="plmlist" class="sapUiTinyMarginBottom">
                     <StandardListItem id="plmsys" title="System Errors" type="Active"
-                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    press="onOpenSystemDialog" info="{oPLMModel>/d/results/3/DimensionHeight}"
+                     infoState="Error"/>
                     <StandardListItem id="plmapp" title="App Errors" type="Active" 
-                    press="onOpenAppDialog" info="259" infoState="Error"/> 
-                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    press="onOpenAppDialog"
+                     info="{oPLMModel>/d/results/3/DimensionWidth}"
+                     infoState="Error"/> 
+                    <StandardListItem title="No of threads" 
+                    info="{oPLMModel>/d/results/3/DimensionDepth}"
+                     infoState="None"/>
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="6th Nov 2020"/>
+                    <Text text="{
+							path: 'oPLMModel>/d/results/3/LastModified',
+							formatter: '.Formatter.formatJSONDate'}"/>
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -117,19 +185,27 @@
                     <HBox>
                     <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
                     <NumericContent id="srmqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
-                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    value="{oSRMModel>/d/results/4/StockQuantity}"
+                     valueColor="Critical"  
+                     indicator="None" press="onOpenQueueDialog"/>
                     
                     </HBox>
                     <List id="srmlist" class="sapUiTinyMarginBottom">
                     <StandardListItem id="srmsys" title="System Errors" type="Active"
-                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    press="onOpenSystemDialog" info="{oSRMModel>/d/results/4/DimensionHeight}" infoState="Error"/>
                     <StandardListItem id="srmapp" title="App Errors" type="Active" 
-                    press="onOpenAppDialog" info="259" infoState="Error"/> 
-                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    press="onOpenAppDialog" info="{oSRMModel>/d/results/4/DimensionWidth}"
+                     infoState="Error"/> 
+                    <StandardListItem title="No of threads" 
+                    info="{oSRMModel>/d/results/4/DimensionDepth}" 
+                    infoState="None"/>
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="6th Nov 2020"/>
+                    <Text text="{ path: 'oSRMModel>/d/results/4/LastModified'
+                      formatter: '.Formatter.formatJSONDate'}"/>
+                    
+							            
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -139,38 +215,73 @@
                     <HBox>
                     <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
                     <NumericContent id="hrmqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
-                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    value="{oHRMModel>/d/results/5/StockQuantity}"
+                    valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
                     
                     </HBox>
                     <List id="hrmlist" class="sapUiTinyMarginBottom">
                     <StandardListItem id="hrmsys" title="System Errors" type="Active"
-                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    press="onOpenSystemDialog" info="{oHRMModel>/d/results/5/DimensionHeight}"
+                     infoState="Error"/>
                     <StandardListItem id="hrmapp" title="App Errors" type="Active" 
-                    press="onOpenAppDialog" info="259" infoState="Error"/> 
-                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    press="onOpenAppDialog" info="{oHRMModel>/d/results/5/DimensionWidth}"
+                     infoState="Error"/> 
+                    <StandardListItem title="No of threads" info="{oHRMModel>/d/results/5/DimensionDepth}"
+                    infoState="None"/>
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="6th Nov 2020"/>
+                    <Text text="{path: 'oHRMModel>/d/results/5/LastModified'
+                    formatter: '.Formatter.formatJSONDate'}"/>
+                   
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
-                    
-                    
 					</HBox>
 					</VBox>
 						</f:SimpleForm>
 					</HBox>
-					
-					
-					
-					
-					
-					
+					</VBox>
+					</IconTabFilter>
+                    <IconTabFilter class="icontabtext" text="Reports" iconColor="Critical" icon="sap-icon://manager-insight" key="Report">
+                    <Table  id="idProductstable" inset="false">
+                    <columns>
+                    <Column>
+                    <Text text="Product"/>
+                    </Column>
+                    <Column  demandPopin="true" minScreenWidth="Tablet">
+                    <Text text="Supplier"/>
+                    </Column>
+                    <Column  demandPopin="true" minScreenWidth="Desktop" hAlign="End">
+                    <Text text="Dimensions"/>
+                    </Column>
+                    <Column  demandPopin="true" minScreenWidth="Desktop" hAlign="Center">
+                    <Text text="Weight"/>
+                    </Column>
+                    <Column  hAlign="End">
+                    <Text text="Price"/>
+                    </Column>
+                    </columns>
+                    <items>
+                    <ColumnListItem >
+                    <cells>
+                    <ObjectIdentifier title="{Name}" text="{Id}"/>
+                    <Text text="{SupplierName}"/>
+                    <Text text="{DimensionWidth} x {DimensionDepth} x {DimensionHeight} {DimensionUnit}"/>
+                    <ObjectNumber state="{ parts: [ {path: 'WeightMeasure'}, {path: 'WeightUnit'} ], formatter: '.Formatter.weightState' }" unit="{WeightUnit}" number="{WeightMeasure}"/>
+
+<ObjectNumber unit="{CurrencyCode}" number="{ parts:[{path:'Price'},{path:'CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"/>
+                    </cells>
+                    </ColumnListItem>
+                    </items>
+                    </Table>
+                    </IconTabFilter>
+</items>
+</IconTabBar>
 					
 				
 					
-					</VBox>
+					
                     </content>
 				</Page>
 			</pages>
