@@ -1,10 +1,176 @@
-<mvc:View controllerName="ns.Project1.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+<mvc:View controllerName="ns.Project1.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+ xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
 					<content>
                     <Text text="Dashboard"/>
+                    <VBox id="tilecontainer">
+                    <HBox>
+                    <f:SimpleForm  minWidth="1024px" maxContainerCols="4" layout="ResponsiveLayout">
+                    <VBox>
+                    <HBox class="sapUiTinyMarginBottom">
+                    <!-- CRM Tile -->
+                    <f:SimpleForm id="crmtile" class="equalColumns1"  maxContainerCols="1" title="CRM" editable="false" layout="ResponsiveLayout">
+                    <VBox id="crmcontainer"> 
+                    <HBox>
+                    <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
+                    <NumericContent id="crmqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+                    value="{oCRMModel>/d/results/0/StockQuantity}" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    
+                    </HBox>
+                    <List id="crmlist" class="sapUiTinyMarginBottom">
+                    <StandardListItem id="crmsys" title="System Errors" type="Active"
+                    press="onOpenSystemDialog" info="{oCRMModel>/d/results/0/DimensionHeight}" infoState="Error"/>
+                    <StandardListItem id="crmapp" title="App Errors" type="Active" 
+                    press="onOpenAppDialog" info="{oCRMModel>/d/results/0/DimensionWidth}" infoState="Error"/> 
+                    <StandardListItem title="No of threads" info="{oCRMModel>/d/results/0/DimensionDepth}" infoState="None"/>
+                    </List>
+                    <HBox>
+                    <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
+                    <Text text="6th Nov 2020"/>
+                    </HBox>
+                    </VBox>
+                    </f:SimpleForm>
+                   
+                    <!-- ECC Tile -->
+                    <f:SimpleForm id="ecctile" class="equalColumns2"  maxContainerCols="1" title="ECC" editable="false" layout="ResponsiveLayout">
+                    <VBox id="ecccontainer"> 
+                    <HBox>
+                    <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
+                    <NumericContent id="eccqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    
+                    </HBox>
+                    <List id="ecclist" class="sapUiTinyMarginBottom">
+                    <StandardListItem id="eccsys" title="System Errors" type="Active"
+                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    <StandardListItem id="eccapp" title="App Errors" type="Active" 
+                    press="onOpenAppDialog" info="259" infoState="Error"/> 
+                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    </List>
+                    <HBox>
+                    <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
+                    <Text text="6th Nov 2020"/>
+                    </HBox>
+                    </VBox>
+                    </f:SimpleForm>
+                    <!-- BIW Tile -->
+                    <f:SimpleForm id="biwtile" class="equalColumns3"  maxContainerCols="1" title="BIW" editable="false" layout="ResponsiveLayout">
+                    <VBox id="biwcontainer"> 
+                    <HBox>
+                    <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
+                    <NumericContent id="biwqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    
+                    </HBox>
+                    <List id="biwlist" class="sapUiTinyMarginBottom">
+                    <StandardListItem id="biwsys" title="System Errors" type="Active"
+                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    <StandardListItem id="biwapp" title="App Errors" type="Active" 
+                    press="onOpenAppDialog" info="259" infoState="Error"/> 
+                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    </List>
+                    <HBox>
+                    <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
+                    <Text text="6th Nov 2020"/>
+                    </HBox>
+                    </VBox>
+                    </f:SimpleForm>
+                    
+                    
+					</HBox>
+					</VBox>
+						</f:SimpleForm>
+					</HBox>
+					<HBox>
+                    <f:SimpleForm  minWidth="1024px" maxContainerCols="4" layout="ResponsiveLayout">
+                    <VBox>
+                    <HBox class="sapUiTinyMarginBottom">
+                    <!-- PLM Tile -->
+                    <f:SimpleForm id="plmtile" class="equalColumns1"  maxContainerCols="1" title="PLM" editable="false" layout="ResponsiveLayout">
+                    <VBox id="plmcontainer"> 
+                    <HBox>
+                    <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
+                    <NumericContent id="plmqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    
+                    </HBox>
+                    <List id="plmlist" class="sapUiTinyMarginBottom">
+                    <StandardListItem id="plmsys" title="System Errors" type="Active"
+                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    <StandardListItem id="plmapp" title="App Errors" type="Active" 
+                    press="onOpenAppDialog" info="259" infoState="Error"/> 
+                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    </List>
+                    <HBox>
+                    <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
+                    <Text text="6th Nov 2020"/>
+                    </HBox>
+                    </VBox>
+                    </f:SimpleForm>
+                   
+                    <!-- SRM Tile -->
+                    <f:SimpleForm id="srmtile" class="equalColumns1"  maxContainerCols="1" title="SRM" editable="false" layout="ResponsiveLayout">
+                    <VBox id="srmcontainer"> 
+                    <HBox>
+                    <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
+                    <NumericContent id="srmqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    
+                    </HBox>
+                    <List id="srmlist" class="sapUiTinyMarginBottom">
+                    <StandardListItem id="srmsys" title="System Errors" type="Active"
+                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    <StandardListItem id="srmapp" title="App Errors" type="Active" 
+                    press="onOpenAppDialog" info="259" infoState="Error"/> 
+                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    </List>
+                    <HBox>
+                    <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
+                    <Text text="6th Nov 2020"/>
+                    </HBox>
+                    </VBox>
+                    </f:SimpleForm>
+                    <!-- HRM Tile -->
+                    <f:SimpleForm id="hrmtile" class="equalColumns1"  maxContainerCols="1" title="BIW" editable="false" layout="ResponsiveLayout">
+                    <VBox id="hrmcontainer"> 
+                    <HBox>
+                    <Text class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Queue Depth"/>
+                    <NumericContent id="hrmqdth" class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+                    value="65" valueColor="Critical"  indicator="None" press="onOpenQueueDialog"/>
+                    
+                    </HBox>
+                    <List id="hrmlist" class="sapUiTinyMarginBottom">
+                    <StandardListItem id="hrmsys" title="System Errors" type="Active"
+                    press="onOpenSystemDialog" info="345" infoState="Error"/>
+                    <StandardListItem id="hrmapp" title="App Errors" type="Active" 
+                    press="onOpenAppDialog" info="259" infoState="Error"/> 
+                    <StandardListItem title="No of threads" info="7" infoState="None"/>
+                    </List>
+                    <HBox>
+                    <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
+                    <Text text="6th Nov 2020"/>
+                    </HBox>
+                    </VBox>
+                    </f:SimpleForm>
+                    
+                    
+					</HBox>
+					</VBox>
+						</f:SimpleForm>
+					</HBox>
+					
+					
+					
+					
+					
+					
+					
+				
+					
+					</VBox>
                     </content>
 				</Page>
 			</pages>

@@ -1,5 +1,5 @@
 {
-  "welcomeFile": "/index.html",
+  "welcomeFile": "nsProject1",
   "authenticationMethod": "none",
   "logout": {
     "logoutEndpoint": "/do/logout"
