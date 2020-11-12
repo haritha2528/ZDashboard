@@ -1,10 +1,11 @@
-
-sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-   "sap/ui/Project1/util/Formatter"
-
-], function (Controller, Formatter) {
+sap.ui.define(function() {
     "use strict";
+    
+
+
+
+    
+
 	var Formatter = {
 
 		weightState :  function (fMeasure, sUnit) {
@@ -33,99 +34,7 @@ sap.ui.define([
 					return "Error";
 				}
 			}
-        },
-        formatDate : function(inpt) {
-
-         		   if(inpt)
-         		   {
-         			   var value = inpt.toString();
-         			   
-         			   if (value.startsWith("/")) 
-         			   {
-         				   var sJsonDate = value;
-         				   
-         				   var sNumber = sJsonDate.replace(/[^0-9]+/g,'');
-         				   var iNumber = sNumber * 1; 
-         				   var oDate = new Date(iNumber);
-         				   
-         				   return oDate;
-         		       }
-         			   else
-         			   {
-         				   return inpt; 
-         			   }
-         		   }
-         		   else
-         		   {
-         			   return inpt;
-         		   }
-                },
-                formatJSONDate:function(Input){
-							if(Input){
-							var dateString = Input.substr(6);
-							var currentTime = new Date(parseInt(dateString ));
-							var month = currentTime.getMonth() + 1;
-							var day = currentTime.getDate();
-							var year = currentTime.getFullYear();
-							var hour = currentTime.getHours();
-							var minutes = currentTime.getMinutes();
-							var seconds = currentTime.getSeconds();
-							var date = day + "-" + month + "-" + year +"  "+ hour +":" + minutes +":"+ seconds;	
-						//	var date = "" + hour +":" + minutes +":"+ seconds;
-						//	var date = "" + hour +":" + minutes;
-												return date;
-							}
-							else
-								{
-								return Input;
-								}
-						},
-						
-						SystemStatus:function(oValue, oThreshold)
-						{
-							var Value=parseInt(oValue);
-							var Threshold = parseInt(oThreshold);
-							
-							if(Value < Threshold){
-								return "Success"	
-							}
-							else if(Value >= Threshold)
-								{
-								return "Error"
-								}
-							else
-								{
-								return "None"
-								}
-							
-						},
-						
-						QueueDepthStatus:function(oQDepth, oQThreshold,oQueueAge,oThreadAge)
-						{
-							var QueueAge = oQueueAge;
-							var ThreadAge = oThreadAge;
-							
-							if(QueueAge == "X" || ThreadAge == "X"){
-								return "Error"
-							}
-							else {
-							var QDepth = parseInt(oQDepth);
-							var QThreshold= parseInt(oQThreshold);
-							
-							if(QDepth < QThreshold){
-								return "Good"
-								
-							}else if(QDepth >= QThreshold)
-								{
-								return "Error"
-								}
-							else
-								{
-								return "Neutral"
-								}
-							}
-						},
-						
+		}
 	};
 
 	return Formatter;

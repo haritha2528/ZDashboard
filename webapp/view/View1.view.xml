@@ -64,8 +64,9 @@
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="{ path: 'oCRMModel>/d/results/0/LastModified',
-                    formatter: '.Formatter.formatJSONDate'}"/>
+                     <Text text="{oCRMModel>/d/results/0/LastModified}"/>
+                    <!-- <Text text="{ path: 'oCRMModel>/d/results/0/LastModified',
+                    formatter: '.Formatter.formatJSONDate'}"/> -->
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -98,8 +99,10 @@
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
                     <Text text="{
+						  oECCModel>/d/results/1/LastModified}"/>
+                    <!-- <Text text="{
 						 path: 'oECCModel>/d/results/1/LastModified',
-						formatter: '.Formatter.formatJSONDate'}"/>
+						formatter: '.Formatter.formatJSONDate'}"/> -->
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -130,9 +133,10 @@
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="{
+                    <Text text="{oBIWModel>/d/results/2/LastModified}"/>
+                    <!-- <Text text="{
 								path: 'oBIWModel>/d/results/2/LastModified',
-							    formatter: '.Formatter.formatJSONDate'}"/>
+							    formatter: '.Formatter.formatJSONDate'}"/> -->
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -172,9 +176,10 @@
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="{
+                    <Text text="{oPLMModel>/d/results/3/LastModified}"/>
+                    <!-- <Text text="{
 							path: 'oPLMModel>/d/results/3/LastModified',
-							formatter: '.Formatter.formatJSONDate'}"/>
+							formatter: '.Formatter.formatJSONDate'}"/> -->
                     </HBox>
                     </VBox>
                     </f:SimpleForm>
@@ -202,8 +207,9 @@
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="{ path: 'oSRMModel>/d/results/4/LastModified'
-                      formatter: '.Formatter.formatJSONDate'}"/>
+                    <Text text="{ oSRMModel>/d/results/4/LastModified}"/>
+                    <!-- <Text text="{ path: 'oSRMModel>/d/results/4/LastModified'
+                      formatter: '.Formatter.formatJSONDate'}"/> -->
                     
 							            
                     </HBox>
@@ -231,8 +237,9 @@
                     </List>
                     <HBox>
                     <Label class="sapUiSmallMarginBegin" text="Updated at:"/>
-                    <Text text="{path: 'oHRMModel>/d/results/5/LastModified'
-                    formatter: '.Formatter.formatJSONDate'}"/>
+                    <Text text="{oHRMModel>/d/results/5/LastModified}"/>
+                    <!-- <Text text="{path: 'oHRMModel>/d/results/5/LastModified'
+                    formatter: '.Formatter.formatJSONDate'}"/> -->
                    
                     </HBox>
                     </VBox>
@@ -244,7 +251,7 @@
 					</VBox>
 					</IconTabFilter>
                     <IconTabFilter class="icontabtext" text="Reports" iconColor="Critical" icon="sap-icon://manager-insight" key="Report">
-                    <Table  id="idProductstable" inset="false">
+                    <Table  id="idProductstable" inset="false" items="{ path: '/Products', sorter: { path: 'Name' } }">
                     <columns>
                     <Column>
                     <Text text="Product"/>
@@ -268,8 +275,16 @@
                     <ObjectIdentifier title="{Name}" text="{Id}"/>
                     <Text text="{SupplierName}"/>
                     <Text text="{DimensionWidth} x {DimensionDepth} x {DimensionHeight} {DimensionUnit}"/>
-                    <ObjectNumber state="{ parts: [ {path: 'WeightMeasure'}, {path: 'WeightUnit'} ], formatter: '.Formatter.weightState' }" unit="{WeightUnit}" number="{WeightMeasure}"/>
+                   <ObjectNumber
+						number="{WeightMeasure}"
+						unit="{WeightUnit}"
+						state="{
+							parts: [
+								{path: 'WeightMeasure'},
+								{path: 'WeightUnit'}
+							], formatter: '.Formatter.weightState' }"/>
 
+                    
 <ObjectNumber unit="{CurrencyCode}" number="{ parts:[{path:'Price'},{path:'CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"/>
                     </cells>
                     </ColumnListItem>
